@@ -2,8 +2,8 @@
 // Inicia a sessão
 session_start();
 // As variáveis login e senha recebem os dados digitados no formulário da página index.php
-$user = $_POST('usuario');
-$senha = $_POST('senha');
+$user = $_POST['usuario'];
+$senha = $_POST['senha'];
 
 // Realiza a conexão com o banco de dados
 $mysqli = new mysqli('localhost', 'root', '', 'mysql');
@@ -20,7 +20,7 @@ if ($result = $mysqli->query("SELECT * FROM pessoa WHERE user = '$user' AND pass
     if ($row_cnt > 0) {
         $_SESSION['user'] = $user; // Armazena o nome do usuário na sessão
         $_SESSION['senha'] = $senha; // Armazena a senha do usuário na sessão (Não recomendado!)
-        header("Locarion: restrito.php"); // Redireciona o usuário para a página restrita
+        header("Location: restrito.php"); // Redireciona o usuário para a página restrita
     } else {
         unset($_SESSION['user']); // Retira o usuário da sessão
         unset($_SESSION['senha']); // Retira a senha da sessão
